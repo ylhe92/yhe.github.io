@@ -12,4 +12,5 @@ function saveToFirebase(email) {
         });
 }
 
+const email = document.getElementById('inputEmail');
 saveToFirebase(email);
