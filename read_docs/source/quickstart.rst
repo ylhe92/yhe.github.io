@@ -15,6 +15,8 @@ Here is a quick example of how to create an environment:
   import highway_env
   from matplotlib import pyplot as plt
   %matplotlib inline
+  import os
+  os.environ["SDL_VIDEODRIVER"] = "dummy"
 
   env = gym.make('highway-v0')
   env.reset()
@@ -51,9 +53,10 @@ After environment creation, the configuration can be accessed using the
 :py:attr:`~highway_env.envs.common.abstract.AbstractEnv.config` attribute.
 
 .. jupyter-execute::
-
+  import os
+  os.environ["SDL_VIDEODRIVER"] = "dummy"
   import pprint
-
+  
   env = gym.make("highway-v0")
   pprint.pprint(env.config)
 
