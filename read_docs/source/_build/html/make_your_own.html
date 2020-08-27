@@ -1,0 +1,481 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Make your own environment &mdash; highway-env  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/jupyter-sphinx.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Bibliography" href="bibliography/index.html" />
+    <link rel="prev" title="Graphics" href="graphics/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> highway-env
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="user_guide.html">User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="observations/index.html">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="actions/index.html">Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dynamics/index.html">Dynamics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rewards/index.html">Rewards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="graphics/index.html">Graphics</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Make your own environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-up-files">Set up files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-scene">Create the scene</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-vehicles">Create the vehicles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#make-the-environment-configurable">Make the environment configurable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#register-the-environment">Register the environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#profit">Profit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-highway_env.envs.common.abstract">API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography/index.html">Bibliography</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">highway-env</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="user_guide.html">User Guide</a> &raquo;</li>
+        
+      <li>Make your own environment</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/make_your_own.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="make-your-own-environment">
+<span id="make-your-own"></span><h1>Make your own environment<a class="headerlink" href="#make-your-own-environment" title="Permalink to this headline">¶</a></h1>
+<p>Here are the steps required to create a new environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pull requests are welcome!</p>
+</div>
+<div class="section" id="set-up-files">
+<h2>Set up files<a class="headerlink" href="#set-up-files" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Create a new <code class="docutils literal notranslate"><span class="pre">your_env.py</span></code> file in <code class="docutils literal notranslate"><span class="pre">highway_env/envs/</span></code></p></li>
+<li><p>Define a class YourEnv, that must inherit from <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv" title="highway_env.envs.common.abstract.AbstractEnv"><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractEnv</span></code></a></p></li>
+</ol>
+<p>This class provides several useful functions:</p>
+<ul class="simple">
+<li><p>A <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv.default_config" title="highway_env.envs.common.abstract.AbstractEnv.default_config"><code class="xref py py-meth docutils literal notranslate"><span class="pre">default_config()</span></code></a> method, that provides a default configuration dictionary that can be overloaded.</p></li>
+<li><p>A <code class="xref py py-meth docutils literal notranslate"><span class="pre">define_spaces()</span></code> method, that gives access to a choice of observation and action types, set from the environment configuration</p></li>
+<li><p>A <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv.step" title="highway_env.envs.common.abstract.AbstractEnv.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step()</span></code></a> method, which executes the desired actions (at policy frequency) and simulate the environment (at simulation frequency)</p></li>
+<li><p>A <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv.render" title="highway_env.envs.common.abstract.AbstractEnv.render"><code class="xref py py-meth docutils literal notranslate"><span class="pre">render()</span></code></a> method, which renders the environment.</p></li>
+</ul>
+</div>
+<div class="section" id="create-the-scene">
+<h2>Create the scene<a class="headerlink" href="#create-the-scene" title="Permalink to this headline">¶</a></h2>
+<p>The first step is to create a <code class="xref py py-class docutils literal notranslate"><span class="pre">RoadNetwork</span></code> that describes the geometry and topology of
+roads and lanes in the scene.
+This should be achieved in a <code class="docutils literal notranslate"><span class="pre">YourEnv._make_road()</span></code> method, called from <code class="docutils literal notranslate"><span class="pre">YourEnv.reset()</span></code> to set the <code class="docutils literal notranslate"><span class="pre">self.road</span></code> field.</p>
+<p>See <a class="reference internal" href="dynamics/road/road.html#road-road"><span class="std std-ref">Roads</span></a> for reference, and existing environments as examples.</p>
+</div>
+<div class="section" id="create-the-vehicles">
+<h2>Create the vehicles<a class="headerlink" href="#create-the-vehicles" title="Permalink to this headline">¶</a></h2>
+<p>The second step is to populate your road network with vehicles. This should be achieved in a <code class="docutils literal notranslate"><span class="pre">YourEnv._make_road()</span></code>
+method, called from <code class="docutils literal notranslate"><span class="pre">YourEnv.reset()</span></code> to set the <code class="docutils literal notranslate"><span class="pre">self.road.vehicles</span></code> list of <a class="reference internal" href="dynamics/vehicle/kinematics.html#highway_env.vehicle.kinematics.Vehicle" title="highway_env.vehicle.kinematics.Vehicle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Vehicle</span></code></a>.</p>
+<p>First, define the controlled ego-vehicle by setting <code class="docutils literal notranslate"><span class="pre">self.vehicle</span></code>. The class of controlled vehicle depends on the
+choice of action type, and can be accessed as <code class="docutils literal notranslate"><span class="pre">self.action_type.vehicle_class</span></code>.
+Other vehicles can be created more freely, and added to the <code class="docutils literal notranslate"><span class="pre">self.road.vehicles</span></code> list.</p>
+<p>See <a class="reference internal" href="dynamics/vehicle/behavior.html#vehicle-behavior"><span class="std std-ref">vehicle behaviors</span></a> for reference, and existing environments as examples.</p>
+</div>
+<div class="section" id="make-the-environment-configurable">
+<h2>Make the environment configurable<a class="headerlink" href="#make-the-environment-configurable" title="Permalink to this headline">¶</a></h2>
+<p>To make a part of your environment configurable, overload the <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv.default_config" title="highway_env.envs.common.abstract.AbstractEnv.default_config"><code class="xref py py-meth docutils literal notranslate"><span class="pre">default_config()</span></code></a>
+method to define new <code class="docutils literal notranslate"><span class="pre">{&quot;config_key&quot;:</span> <span class="pre">value}</span></code> pairs with default values. These configurations then be accessed in your
+environment implementation with <code class="docutils literal notranslate"><span class="pre">self.config[&quot;config_key&quot;]</span></code>, and once the environment is created, it can be configured with
+<code class="docutils literal notranslate"><span class="pre">env.configure({&quot;config_key&quot;:</span> <span class="pre">other_value})</span></code> followed by <code class="docutils literal notranslate"><span class="pre">env.reset()</span></code>.</p>
+</div>
+<div class="section" id="register-the-environment">
+<h2>Register the environment<a class="headerlink" href="#register-the-environment" title="Permalink to this headline">¶</a></h2>
+<p>In <code class="docutils literal notranslate"><span class="pre">highway_env/envs/your_env.py</span></code>, add the following line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">register</span><span class="p">(</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s1">&#39;your-env-v0&#39;</span><span class="p">,</span>
+    <span class="n">entry_point</span><span class="o">=</span><span class="s1">&#39;highway_env.envs:YourEnv&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>and import it from <code class="docutils literal notranslate"><span class="pre">highway_env/envs/__init__.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">highway_env.envs.your_env</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="profit">
+<h2>Profit<a class="headerlink" href="#profit" title="Permalink to this headline">¶</a></h2>
+<p>That’s it!
+You should now be able to run the environment:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">gym</span>
+<span class="kn">import</span> <span class="nn">highway_env</span>
+
+<span class="n">env</span> <span class="o">=</span> <span class="n">gym</span><span class="o">.</span><span class="n">make</span><span class="p">(</span><span class="s1">&#39;your-env-v0&#39;</span><span class="p">)</span>
+<span class="n">obs</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span>
+<span class="n">obs</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">env</span><span class="o">.</span><span class="n">action_space</span><span class="o">.</span><span class="n">sample</span><span class="p">())</span>
+<span class="n">env</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-highway_env.envs.common.abstract">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-highway_env.envs.common.abstract" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="highway_env.envs.common.abstract.AbstractEnv">
+<em class="property">class </em><code class="sig-prename descclassname">highway_env.envs.common.abstract.</code><code class="sig-name descname">AbstractEnv</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">config</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv" title="Permalink to this definition">¶</a></dt>
+<dd><p>A generic environment for various tasks involving a vehicle driving on a road.</p>
+<p>The environment contains a road populated with vehicles, and a controlled ego-vehicle that can change lane and
+speed. The action space is fixed, but the observation space and reward function must be defined in the
+environment implementations.</p>
+<dl class="py attribute">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.PERCEPTION_DISTANCE">
+<code class="sig-name descname">PERCEPTION_DISTANCE</code><em class="property"> = 180.0</em><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.PERCEPTION_DISTANCE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum distance of any vehicle present in the observation [m]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.default_config">
+<em class="property">classmethod </em><code class="sig-name descname">default_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.default_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.default_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Default environment configuration.</p>
+<p>Can be overloaded in environment implementations, or by calling configure().
+:return: a configuration dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.seed">
+<code class="sig-name descname">seed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seed</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.seed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the seed for this env’s random number generator(s).</p>
+<dl class="simple">
+<dt>Note:</dt><dd><p>Some environments use multiple pseudorandom number generators.
+We want to capture all such seeds used in order to ensure that
+there aren’t accidental correlations between multiple generators.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>list&lt;bigint&gt;: Returns the list of seeds used in this env’s random</dt><dd><p>number generators. The first value in the list should be the
+“main” seed, or the value which a reproducer should pass to
+‘seed’. Often, the main seed equals the provided ‘seed’, but
+this won’t be true if seed=None, for example.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv._reward">
+<code class="sig-name descname">_reward</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>int<span class="p">, </span>numpy.ndarray<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv._reward"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv._reward" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the reward associated with performing a given action and ending up in the current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> – the last action performed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the reward</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv._is_terminal">
+<code class="sig-name descname">_is_terminal</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv._is_terminal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv._is_terminal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the current state is a terminal state</p>
+<p>:return:is the state terminal</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv._cost">
+<code class="sig-name descname">_cost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>int<span class="p">, </span>numpy.ndarray<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; float<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv._cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv._cost" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constraint metric, for budgeted MDP.</p>
+<p>If a constraint is defined, it must be used with an alternate reward that doesn’t contain it as a penalty.
+:param action: the last action performed
+:return: the constraint signal, the alternate (constraint-free) reward</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.reset">
+<code class="sig-name descname">reset</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.reset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reset the environment to it’s initial configuration</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the observation of the reset state</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.step">
+<code class="sig-name descname">step</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>int<span class="p">, </span>numpy.ndarray<span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; Tuple<span class="p">[</span>numpy.ndarray<span class="p">, </span>float<span class="p">, </span>bool<span class="p">, </span>dict<span class="p">]</span><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform an action and step the environment dynamics.</p>
+<p>The action is executed by the ego-vehicle, and all other vehicles on the road performs their default behaviour
+for several simulation timesteps until the next decision making step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>action</strong> – the action performed by the ego-vehicle</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a tuple (observation, reward, terminal, info)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv._simulate">
+<code class="sig-name descname">_simulate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">action</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>int<span class="p">, </span>numpy.ndarray<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv._simulate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv._simulate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform several steps of simulation with constant action.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.render">
+<code class="sig-name descname">render</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mode</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'human'</span></em><span class="sig-paren">)</span> &#x2192; Optional<span class="p">[</span>numpy.ndarray<span class="p">]</span><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.render"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.render" title="Permalink to this definition">¶</a></dt>
+<dd><p>Render the environment.</p>
+<p>Create a viewer if none exists, and use it to render an image.
+:param mode: the rendering mode</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.close">
+<code class="sig-name descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.close"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the environment.</p>
+<p>Will close the environment viewer if it exists.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.get_available_actions">
+<code class="sig-name descname">get_available_actions</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; List<span class="p">[</span>int<span class="p">]</span><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.get_available_actions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.get_available_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of currently available actions.</p>
+<p>Lane changes are not available on the boundary of the road, and speed changes are not available at
+maximal or minimal speed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the list of available actions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv._automatic_rendering">
+<code class="sig-name descname">_automatic_rendering</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv._automatic_rendering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv._automatic_rendering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically render the intermediate frames while an action is still ongoing.</p>
+<p>This allows to render the whole video and not only single steps corresponding to agent decision-making.</p>
+<p>If a callback has been set, use it to perform the rendering. This is useful for the environment wrappers
+such as video-recording monitor that need to access these intermediate renderings.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.simplify">
+<code class="sig-name descname">simplify</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv" title="highway_env.envs.common.abstract.AbstractEnv">highway_env.envs.common.abstract.AbstractEnv</a><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.simplify"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.simplify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a simplified copy of the environment where distant vehicles have been removed from the road.</p>
+<p>This is meant to lower the policy computational load while preserving the optimal actions set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a simplified environment state</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="highway_env.envs.common.abstract.AbstractEnv.change_vehicles">
+<code class="sig-name descname">change_vehicles</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">vehicle_class_path</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#highway_env.envs.common.abstract.AbstractEnv" title="highway_env.envs.common.abstract.AbstractEnv">highway_env.envs.common.abstract.AbstractEnv</a><a class="reference internal" href="_modules/highway_env/envs/common/abstract.html#AbstractEnv.change_vehicles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#highway_env.envs.common.abstract.AbstractEnv.change_vehicles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the type of all vehicles on the road</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>vehicle_class_path</strong> – The path of the class of behavior for other vehicles
+Example: “highway_env.vehicle.behavior.IDMVehicle”</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a new environment with modified behavior model for other vehicles</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bibliography/index.html" class="btn btn-neutral float-right" title="Bibliography" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="graphics/index.html" class="btn btn-neutral float-left" title="Graphics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2018, Edouard Leurent
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
