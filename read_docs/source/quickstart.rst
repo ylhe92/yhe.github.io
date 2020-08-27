@@ -9,24 +9,24 @@ Making an environment
 
 Here is a quick example of how to create an environment:
 
-.. jupyter-execute::
+.. .. jupyter-execute::
 
-  import gym
-  import highway_env
-  from matplotlib import pyplot as plt
-  %matplotlib inline
-  import os
-  os.environ["SDL_VIDEODRIVER"] = "dummy"
+..   import gym
+..   import highway_env
+..   from matplotlib import pyplot as plt
+..   %matplotlib inline
+..   import os
+..   os.environ["SDL_VIDEODRIVER"] = "dummy"
 
-  env = gym.make('highway-v0')
-  env.reset()
-  for _ in range(3):
-      action = env.action_type.actions_indexes["IDLE"]
-      obs, reward, done, info = env.step(action)
-      env.render()
+..   env = gym.make('highway-v0')
+..   env.reset()
+..   for _ in range(3):
+..       action = env.action_type.actions_indexes["IDLE"]
+..       obs, reward, done, info = env.step(action)
+..       env.render()
 
-  plt.imshow(env.render(mode="rgb_array"))
-  plt.show()
+..   plt.imshow(env.render(mode="rgb_array"))
+..   plt.show()
 
 All the environments
 ~~~~~~~~~~~~~~~~~~~~
@@ -52,22 +52,22 @@ of an environment are parametrized by a configuration, defined as a
 After environment creation, the configuration can be accessed using the
 :py:attr:`~highway_env.envs.common.abstract.AbstractEnv.config` attribute.
 
-.. jupyter-execute::
-  import os
-  os.environ["SDL_VIDEODRIVER"] = "dummy"
-  import pprint
+.. .. jupyter-execute::
+..   import os
+..   os.environ["SDL_VIDEODRIVER"] = "dummy"
+..   import pprint
   
-  env = gym.make("highway-v0")
-  pprint.pprint(env.config)
+..   env = gym.make("highway-v0")
+..   pprint.pprint(env.config)
 
 For example, the number of lanes can be changed with:
 
-.. jupyter-execute::
+.. .. jupyter-execute::
 
-  env.config["lanes_count"] = 2
-  env.reset()
-  plt.imshow(env.render(mode="rgb_array"))
-  plt.show()
+..   env.config["lanes_count"] = 2
+..   env.reset()
+..   plt.imshow(env.render(mode="rgb_array"))
+..   plt.show()
 
 .. note::
 

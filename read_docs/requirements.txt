@@ -14,4 +14,3 @@ pandas
 # =========
 pytest
 scipy
-pprintpp
